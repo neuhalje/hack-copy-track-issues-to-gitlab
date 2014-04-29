@@ -40,7 +40,7 @@ class Connection(object):
         :return: json of GET
         """
         completed_url = self._complete_url(url_postfix, keywords)
-        r = requests.get(completed_url)
+        r = requests.get(completed_url + "&per_page=100")
         json = r.json()
         return json
 
@@ -60,7 +60,7 @@ class Connection(object):
     def post_json(self, url_postfix, data, **keywords):
         completed_url = self._complete_url(url_postfix, keywords)
         payload = json.dumps(data)
-        r = requests.post(completed_url, payload)
+        r = requests.post(completed_url, data=data)
         j = r.json()
         return j
 
@@ -82,7 +82,7 @@ class Connection(object):
 
     def close_issue(self,project_id,ticket_id):
         #new_note_data = "closed=1"
-        new_note_data = {"closed": "1"}
+        new_note_data = {"state_event": "close"}
         self.put("/projects/:project_id/issues/:issue_id", new_note_data, project_id=project_id, issue_id=ticket_id)
 
     def _complete_url(self, url_postfix, keywords):

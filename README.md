@@ -1,12 +1,12 @@
 What
 =====
 
- This script migrates issues from trac to gitlab.
+ This script migrates trac tickets to gitlab issues.
 
 Features
 --------
  * Component & Issue-Type are converted to labels
- * Milestones are ignored (or: I did not get the script to set my one single milestone, so I set it manually)
+ * Milestones are created in Gitlab from fixture data manualy grabbed from trac (copy/paste)
  * Comments to issues are copied over
  * Wiki Syntax in comments/descriptions is sanitized for my basic usage
 
@@ -28,11 +28,12 @@ Target
  * ```gitlab_access_token``` - the access token of the user creating all the issues. Found on the account page,  e.g. ```secretsecretsecret```
  * ```dest_project_name``` - the destination project including the paths to it. Basically the rest of the clone url minus the ".git". E.g. ```jens.neuhalfen/task-ninja```.
  * ```milestone_map``` - Maps milestones from trac to gitlab. Milestones have to exist in gitlab prior to running the script (_CAVE_: Assigning milestones does not work.)
+ * ```milestone_list``` - Lists milestones from trac with associated metadata. Manually populated at this point by copy/paste out of trac milestone admin page
 
 License
 ========
 
- License: http://www.wtfpl.net/
+ License: MIT
 
 Requirements
 ==============

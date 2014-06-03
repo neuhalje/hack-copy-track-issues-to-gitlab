@@ -33,7 +33,7 @@ Target
 License
 ========
 
- License: MIT
+ License: http://www.wtfpl.net/
 
 Requirements
 ==============

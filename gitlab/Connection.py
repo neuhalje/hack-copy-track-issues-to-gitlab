@@ -1,5 +1,6 @@
 import json
 import requests
+import sys
 
 __author__ = 'jens'
 
@@ -67,6 +68,14 @@ class Connection(object):
     def create_issue(self, dest_project_id, new_ticket):
         return self.post_json("/projects/:id/issues", new_ticket, id=dest_project_id)
 
+    def create_milestone(self, dest_project_id, milestone_info):
+    	new_milestone_data = {
+        	"title" : milestone_info['title'],
+        	"description" : milestone_info['description'],
+        	"due_date" : milestone_info['due_date']
+        }
+        self.post_json("/projects/:id/milestones", new_milestone_data, id=dest_project_id)
+
     def comment_issue(self,project_id,ticket_id, body):
         new_note_data = {
             "id" : project_id,
@@ -78,6 +87,7 @@ class Connection(object):
 
     def set_issue_milestone(self,project_id,ticket_id,milestone_id):
         new_note_data = {"milestone" : milestone_id}
+        print >>sys.stderr, "\nSetting issue milestone for: %s\n" % (milestone_id)
         self.put("/projects/:project_id/issues/:issue_id", new_note_data, project_id=project_id, issue_id=ticket_id)
 
     def close_issue(self,project_id,ticket_id):

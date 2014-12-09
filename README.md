@@ -41,3 +41,21 @@ Requirements
  * ```Python 2.7, xmlrpclib, requests```
  * Trac with xmlrpc plugin enabled
  * Gitlab
+
+
+Create milestone_list from copy paste admin area trac
+==============================================
+
+Copy the milestones from the trac admin page and paste them in your editor of choice that supports regex replace.
+
+Now replace the full text with the following regex and replacement, adjust as you see fit. When done, copy the result in migrate.py.
+
+    regex: \s*([\w\.\s]*?)\s*(\d{2})/(\d{2})/(\d{2})\s[\d:]*\s*(?:(\d{2})/(\d{2})/(\d{2})\s[\d:]*)?\s*\d+
+    replace: "$1":{"title":"$1","description":"Trac Import, milestone completed on: 20$7-$5-$6","due_date":"20$4-$2-$3"},\r\n
+
+Create milestone_map from above
+----------
+Now from the milestone_list you can create a simple map with the following regex and replacement:
+
+    regex: ("[\w\.\s]*"):\{.*\r\n
+    replace: $1:$1,

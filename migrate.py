@@ -123,7 +123,7 @@ if __name__ == "__main__":
 
     get_all_tickets = xmlrpclib.MultiCall(source)
 
-    for ticket in source.ticket.query("max=0"):
+    for ticket in source.ticket.query("max=0&order=id&asc=1"):
         get_all_tickets.ticket.get(ticket)
 
 

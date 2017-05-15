@@ -1,3 +1,9 @@
+DEPRECATED
+===========
+
+[TracBoat](https://github.com/nazavode/tracboat) is a much more sophisticated successor to theis script.
+
+
 What
 =====
 
